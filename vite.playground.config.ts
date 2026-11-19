@@ -22,6 +22,10 @@ import { resolve } from "node:path"
 // Dev server for trying components locally: npm run playground
 export default defineConfig({
   root: resolve(import.meta.dirname, "playground"),
+  // Keep Vite's pre-bundled dependency cache inside `root`. With the default (the project's
+  // node_modules/.vite, outside `root`), /node_modules/.vite/deps/* requests fall through to
+  // index.html and the page never starts.
+  cacheDir: resolve(import.meta.dirname, "playground/node_modules/.vite"),
   plugins: [react(), tailwindcss()],
   resolve: { alias: { "@": resolve(import.meta.dirname, "src") } },
   build: { outDir: resolve(import.meta.dirname, "node_modules/.playground-dist"), emptyOutDir: true },

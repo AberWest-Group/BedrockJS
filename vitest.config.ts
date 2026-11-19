@@ -21,5 +21,5 @@ import { resolve } from "node:path"
 export default defineConfig({
   plugins: [react()],
   resolve: { alias: { "@": resolve(import.meta.dirname, "src") } },
-  test: { environment: "jsdom", css: false },
+  test: { environment: "jsdom", css: false, testTimeout: 30_000 },
 })

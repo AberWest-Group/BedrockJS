@@ -130,3 +130,23 @@ describe("DataTable", () => {
     expect(screen.getByText("Nothing here")).toBeTruthy()
   })
 })
+
+describe("DataTable without a height limit", () => {
+  it("caps rendered rows instead of rendering every row (no page freeze)", () => {
+    // Simulate a real browser where nothing constrains the table: it grows to its full
+    // content height (100k rows x 24px), so clientHeight is ~2.4 million px.
+    const h = vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockReturnValue(2_400_030)
+    const w = vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(1200)
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {})
+    try {
+      render(<DataTable data={data} columns={columns} />)
+      const rows = grid().querySelectorAll("[role=row][aria-rowindex]").length
+      expect(rows).toBeLessThan(250)
+      expect(warn).toHaveBeenCalledWith(expect.stringContaining("no height limit"))
+    } finally {
+      h.mockRestore()
+      w.mockRestore()
+      warn.mockRestore()
+    }
+  })
+})

@@ -404,10 +404,24 @@ function DataTable<T>(props: DataTableProps<T>) {
   useIsoLayoutEffect(() => {
     const el = scrollRef.current
     if (!el) return
+    let warned = false
     const measure = () =>
       setViewport((v) => {
-        const w = el.clientWidth || v.w
-        const h = el.clientHeight || v.h
+        // Guard: if nothing constrains the table's size, it grows to its full content
+        // height and "the viewport" would be every row, rendering 100k+ rows at once and
+        // freezing the page. Never treat more than ~2 screens as visible.
+        const maxW = Math.max(window.innerWidth || 0, 1000) * 2
+        const maxH = Math.max(window.innerHeight || 0, 600) * 2
+        if (!warned && (el.clientHeight > maxH || el.clientWidth > maxW)) {
+          warned = true
+          console.warn(
+            "[DataTable] The table has no height limit, so only the first rows will render. " +
+              "Give it a fixed height (e.g. className=\"h-[600px]\") or put it in a flex/grid " +
+              "container that constrains its height."
+          )
+        }
+        const w = Math.min(el.clientWidth || v.w, maxW)
+        const h = Math.min(el.clientHeight || v.h, maxH)
         return v.w === w && v.h === h ? v : { w, h }
       })
     measure()
