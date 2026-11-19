@@ -1,6 +1,6 @@
 {
   "name": "@aberwest-group/bedrock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Aberwest React component library built on shadcn/ui, Radix UI and Tailwind CSS.",
   "license": "Apache-2.0",
   "author": "AberWest Group LTD",
