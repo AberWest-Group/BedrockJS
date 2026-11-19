@@ -1,9 +1,6 @@
 # @aberwest-group/bedrock
 
-AberWest Group's shared React component library. It covers every [shadcn/ui](https://ui.shadcn.com)
-component plus a high-performance `DataTable`. Components are restyled in a dense,
-desktop-first design language inspired by Palantir's [Blueprint](https://blueprintjs.com),
-and built on Radix UI and Tailwind CSS v4.
+AberWest Group's shared React component library.
 
 ## Install
 
