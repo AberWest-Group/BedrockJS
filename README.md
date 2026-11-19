@@ -138,13 +138,32 @@ shadcn, as its MIT licence requires.
 
 ## Publishing
 
+The package is public on [npmjs.com](https://www.npmjs.com/package/@aberwest-group/bedrock),
+owned by the npm organization `aberwest-group`.
+
+### Releasing a new version
+
+Releases are published by GitHub Actions ([.github/workflows/publish.yml](.github/workflows/publish.yml))
+using npm trusted publishing, so no npm token is stored anywhere:
+
 ```bash
-npm login
-npm version patch   # or minor / major
-npm publish         # runs typecheck, tests and build first; publishes as public
+npm version patch          # or minor / major: bumps package.json, commits, tags v0.1.1
+git push --follow-tags     # pushes the commit and the tag
 ```
 
-The `@aberwest` scope must exist on npm: create an npm organization called `aberwest`.
+Then on GitHub, open *Releases → Draft a new release*, pick the tag you just pushed, and click
+*Publish release*. The workflow checks that the tag matches `package.json`, runs the
+type-check, tests and build, and publishes with provenance.
+
+Versioning: `patch` for fixes, `minor` for new components or props, `major` for anything that
+breaks existing usage.
+
+### First-time setup (already done once; kept for reference)
+
+1. Create the free npm organization `aberwest-group` on npmjs.com.
+2. Publish the first version by hand: `npm login`, then `npm publish --access public`.
+3. On npmjs.com, open the package's *Settings → Trusted Publisher*, choose *GitHub Actions*,
+   and enter organization `AberWest-Group`, repository `BedrockJS`, workflow `publish.yml`.
 
 ## Licence
 

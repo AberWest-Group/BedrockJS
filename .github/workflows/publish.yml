@@ -1,7 +1,12 @@
-# Publishes @aberwest-group/bedrock to GitHub Packages when a GitHub release is published.
+# Publishes @aberwest-group/bedrock to npmjs.com when a GitHub release is published.
 #
-# To release: bump the version (npm version patch|minor|major), push the commit and tag,
-# then create a GitHub release from that tag. The tag must match package.json (v1.2.3).
+# Uses npm "trusted publishing": npm verifies this workflow via GitHub's OIDC token, so no
+# npm token is stored in the repo. One-time setup on npmjs.com: package Settings →
+# Trusted Publisher → GitHub Actions → organization "AberWest-Group", repository
+# "BedrockJS", workflow filename "publish.yml".
+#
+# To release: npm version patch|minor|major, git push --follow-tags, then create a GitHub
+# release from the new tag. The tag must match package.json (v1.2.3).
 name: Publish package
 
 on:
@@ -11,7 +16,7 @@ on:
 
 permissions:
   contents: read
-  packages: write
+  id-token: write # lets npm verify this workflow (trusted publishing + provenance)
 
 jobs:
   publish:
@@ -23,8 +28,10 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          registry-url: https://npm.pkg.github.com
-          scope: "@aberwest-group"
+          registry-url: https://registry.npmjs.org
+
+      # Trusted publishing needs npm 11.5.1 or newer.
+      - run: npm install -g npm@latest
 
       - run: npm ci
 
@@ -39,6 +46,4 @@ jobs:
           fi
 
       # prepublishOnly runs typecheck, tests (incl. licence headers) and the build first.
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --access public
