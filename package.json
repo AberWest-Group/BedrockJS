@@ -1,9 +1,17 @@
 {
-  "name": "@aberwest/bedrock",
+  "name": "@aberwest-group/bedrock",
   "version": "0.1.0",
   "description": "Aberwest React component library built on shadcn/ui, Radix UI and Tailwind CSS.",
   "license": "Apache-2.0",
   "author": "AberWest Group LTD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AberWest-Group/BedrockJS.git"
+  },
+  "homepage": "https://github.com/AberWest-Group/BedrockJS#readme",
+  "bugs": {
+    "url": "https://github.com/AberWest-Group/BedrockJS/issues"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -36,7 +44,7 @@
     "radix"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "dev": "vite build --watch",

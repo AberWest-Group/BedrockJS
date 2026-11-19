@@ -1564,7 +1564,7 @@ export function Showcase() {
     <B.TooltipProvider>
       <header className="sticky top-0 z-40 flex h-12 items-center gap-3 border-b bg-background/95 px-4 backdrop-blur">
         <span className="font-semibold">Bedrock</span>
-        <B.Badge minimal>@aberwest/bedrock</B.Badge>
+        <B.Badge minimal>@aberwest-group/bedrock</B.Badge>
         <span className="hidden text-xs text-muted-foreground sm:inline">{sections.length} components</span>
         <div className="ml-auto flex items-center gap-2">
           <B.InputGroup className="w-56">

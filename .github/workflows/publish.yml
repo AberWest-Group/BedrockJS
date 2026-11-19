@@ -1,0 +1,44 @@
+# Publishes @aberwest-group/bedrock to GitHub Packages when a GitHub release is published.
+#
+# To release: bump the version (npm version patch|minor|major), push the commit and tag,
+# then create a GitHub release from that tag. The tag must match package.json (v1.2.3).
+name: Publish package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@aberwest-group"
+
+      - run: npm ci
+
+      - name: Check the release tag matches package.json
+        if: github.event_name == 'release'
+        run: |
+          expected="v$(node -p "require('./package.json').version")"
+          if [ "${{ github.event.release.tag_name }}" != "$expected" ]; then
+            echo "Release tag ${{ github.event.release.tag_name }} does not match package.json version ($expected)."
+            echo "Run 'npm version <patch|minor|major>' and release the tag it creates."
+            exit 1
+          fi
+
+      # prepublishOnly runs typecheck, tests (incl. licence headers) and the build first.
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-# @aberwest/bedrock
+# @aberwest-group/bedrock
 
 AberWest Group's shared React component library. It covers every [shadcn/ui](https://ui.shadcn.com)
 component plus a high-performance `DataTable`. Components are restyled in a dense,
@@ -8,7 +8,7 @@ and built on Radix UI and Tailwind CSS v4.
 ## Install
 
 ```bash
-npm install @aberwest/bedrock
+npm install @aberwest-group/bedrock
 ```
 
 Requires `react` and `react-dom` 18 or 19.
@@ -18,7 +18,7 @@ Requires `react` and `react-dom` 18 or 19.
 **A. Your app does not use Tailwind.** Import the precompiled stylesheet once at your app's root:
 
 ```ts
-import "@aberwest/bedrock/styles.css"
+import "@aberwest-group/bedrock/styles.css"
 ```
 
 **B. Your app uses Tailwind v4.** Import the theme in your main CSS so your Tailwind build
@@ -27,13 +27,13 @@ generates the classes the components need, and Tailwind isn't shipped twice:
 ```css
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@aberwest/bedrock/theme.css";
+@import "@aberwest-group/bedrock/theme.css";
 ```
 
 ## Use
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle, TooltipProvider } from "@aberwest/bedrock"
+import { Button, Card, CardHeader, CardTitle, TooltipProvider } from "@aberwest-group/bedrock"
 
 export function App() {
   return (
@@ -69,7 +69,7 @@ Re-theme by overriding any CSS variable in your own stylesheet, e.g. `:root { --
 A spreadsheet-style grid for large datasets: 100,000+ rows scroll smoothly.
 
 ```tsx
-import { DataTable, type DataTableColumn } from "@aberwest/bedrock"
+import { DataTable, type DataTableColumn } from "@aberwest-group/bedrock"
 
 const columns: DataTableColumn<Trade>[] = [
   { id: "symbol", header: "Symbol", sortable: true },
