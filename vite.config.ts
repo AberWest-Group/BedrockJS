@@ -1,3 +1,9 @@
+/*
+ * Copyright 2026 AberWest Group LTD. All rights reserved.
+ *
+ * Licensed under the MIT License. See the LICENSE file in the project root.
+ */
+
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
@@ -29,6 +35,17 @@ export default defineConfig({
       external: (id) =>
         id === "react/jsx-runtime" ||
         external.some((dep) => id === dep || id.startsWith(dep + "/")),
+      output: {
+        // Licence notice on the published bundles (source comments are stripped by the bundler).
+        banner: [
+          "/*!",
+          ` * ${pkg.name} v${pkg.version}`,
+          ` * Copyright ${new Date().getFullYear()} AberWest Group LTD. All rights reserved.`,
+          " * Portions copyright (c) 2023 shadcn (https://github.com/shadcn-ui/ui), MIT License.",
+          " * Licensed under the MIT License. See LICENSE in the package root.",
+          " */",
+        ].join("\n"),
+      },
     },
     sourcemap: true,
   },

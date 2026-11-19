@@ -39,12 +39,16 @@
   },
   "scripts": {
     "dev": "vite build --watch",
-    "build": "npm run gen:index && vite build && node scripts/copy-css.mjs",
+    "build": "npm run gen:index && npm run license:fix && vite build && node scripts/copy-css.mjs",
     "typecheck": "tsc --noEmit",
     "gen:index": "node scripts/gen-index.mjs",
     "add": "shadcn add",
     "prepublishOnly": "npm run typecheck && npm test && npm run build",
-    "test": "vitest run"
+    "test": "npm run license:check && vitest run",
+    "playground": "vite --config vite.playground.config.ts --open",
+    "license:check": "node scripts/license-headers.mjs",
+    "license:fix": "node scripts/license-headers.mjs --fix",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

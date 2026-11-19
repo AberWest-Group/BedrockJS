@@ -1,3 +1,9 @@
+/*
+ * Copyright 2026 AberWest Group LTD. All rights reserved.
+ *
+ * Licensed under the MIT License. See the LICENSE file in the project root.
+ */
+
 "use client"
 
 import * as React from "react"

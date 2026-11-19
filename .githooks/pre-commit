@@ -1,0 +1,3 @@
+#!/bin/sh
+# Adds the AberWest Group LTD licence header to any staged source file that lacks it.
+node scripts/license-headers.mjs --fix --staged || exit 1

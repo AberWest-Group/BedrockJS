@@ -1,3 +1,9 @@
+/*
+ * Copyright 2026 AberWest Group LTD. All rights reserved.
+ *
+ * Licensed under the MIT License. See the LICENSE file in the project root.
+ */
+
 import * as React from "react"
 import { describe, it, expect, vi, afterEach } from "vitest"
 import { render, screen, fireEvent, cleanup, within } from "@testing-library/react"
