@@ -1,0 +1,4 @@
+/* Build entry: compiles Tailwind + the theme into dist/styles.css */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./theme.css";

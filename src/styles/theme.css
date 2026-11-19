@@ -1,0 +1,271 @@
+/*
+ * Bedrock theme tokens.
+ *
+ * Design language: dense, desktop-first, data-heavy UI in the spirit of Palantir's
+ * Blueprint (https://blueprintjs.com): neutral gray scale with a blue accent, four
+ * semantic "intents" (primary / success / warning / danger), a 10px grid, 30px
+ * controls, small 2-4px radii, and layered "elevation" shadows instead of hard borders.
+ *
+ * Override any variable in your app to re-theme every component.
+ * Dark mode: add the `dark` class to <html> (or any ancestor).
+ */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ---- Palette (raw values, referenced by the semantic tokens below) ---- */
+  --bp-black: #111418;
+  --bp-dark-gray-1: #1c2127;
+  --bp-dark-gray-2: #252a31;
+  --bp-dark-gray-3: #2f343c;
+  --bp-dark-gray-4: #383e47;
+  --bp-dark-gray-5: #404854;
+  --bp-gray-1: #5f6b7c;
+  --bp-gray-2: #738091;
+  --bp-gray-3: #8f99a8;
+  --bp-gray-4: #abb3bf;
+  --bp-gray-5: #c5cbd3;
+  --bp-light-gray-1: #d3d8de;
+  --bp-light-gray-2: #dce0e5;
+  --bp-light-gray-3: #e5e8eb;
+  --bp-light-gray-4: #edeff2;
+  --bp-light-gray-5: #f6f7f9;
+  --bp-blue-1: #184a90;
+  --bp-blue-2: #215db0;
+  --bp-blue-3: #2d72d2;
+  --bp-blue-4: #4c90f0;
+  --bp-blue-5: #8abbff;
+  --bp-green-1: #165a36;
+  --bp-green-2: #1c6e42;
+  --bp-green-3: #238551;
+  --bp-green-4: #32a467;
+  --bp-green-5: #72ca9b;
+  --bp-orange-1: #77450d;
+  --bp-orange-2: #935610;
+  --bp-orange-3: #c87619;
+  --bp-orange-4: #ec9a3c;
+  --bp-orange-5: #fbb360;
+  --bp-red-1: #8e292c;
+  --bp-red-2: #ac2f33;
+  --bp-red-3: #cd4246;
+  --bp-red-4: #e76a6e;
+  --bp-red-5: #fa999c;
+
+  /* ---- Shape & density ---- */
+  --radius: 4px;
+  --control-height: 30px;
+  --control-height-sm: 24px;
+  --control-height-lg: 40px;
+
+  /* ---- Semantic tokens (light) ---- */
+  --background: #ffffff;
+  --foreground: var(--bp-dark-gray-1);
+  --card: #ffffff;
+  --card-foreground: var(--bp-dark-gray-1);
+  --popover: #ffffff;
+  --popover-foreground: var(--bp-dark-gray-1);
+
+  --primary: var(--bp-blue-3);
+  --primary-hover: var(--bp-blue-2);
+  --primary-active: var(--bp-blue-1);
+  --primary-foreground: #ffffff;
+  --primary-text: var(--bp-blue-2);
+
+  --success: var(--bp-green-3);
+  --success-hover: var(--bp-green-2);
+  --success-foreground: #ffffff;
+  --success-text: var(--bp-green-2);
+
+  --warning: var(--bp-orange-3);
+  --warning-hover: var(--bp-orange-2);
+  --warning-foreground: var(--bp-dark-gray-1);
+  --warning-text: var(--bp-orange-2);
+
+  --destructive: var(--bp-red-3);
+  --destructive-hover: var(--bp-red-2);
+  --destructive-foreground: #ffffff;
+  --destructive-text: var(--bp-red-2);
+
+  /* "Default" (non-intent) buttons and neutral fills */
+  --secondary: var(--bp-light-gray-5);
+  --secondary-hover: var(--bp-light-gray-4);
+  --secondary-foreground: var(--bp-dark-gray-1);
+  --muted: var(--bp-light-gray-5);
+  --muted-foreground: var(--bp-gray-1);
+  --accent: rgba(143, 153, 168, 0.15);
+  --accent-foreground: var(--bp-dark-gray-1);
+
+  --border: rgba(17, 20, 24, 0.15);
+  --input: rgba(17, 20, 24, 0.2);
+  --ring: rgba(45, 114, 210, 0.6);
+
+  /* Data table */
+  --table-header: var(--bp-light-gray-5);
+  --table-grid: rgba(17, 20, 24, 0.15);
+  --table-stripe: rgba(143, 153, 168, 0.08);
+  --table-selection: rgba(45, 114, 210, 0.1);
+  --table-selection-border: var(--bp-blue-3);
+
+  --chart-1: var(--bp-blue-3);
+  --chart-2: var(--bp-green-3);
+  --chart-3: var(--bp-orange-3);
+  --chart-4: var(--bp-red-3);
+  --chart-5: #7961db;
+
+  --sidebar: var(--bp-light-gray-5);
+  --sidebar-foreground: var(--bp-dark-gray-1);
+  --sidebar-primary: var(--bp-blue-3);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(143, 153, 168, 0.15);
+  --sidebar-accent-foreground: var(--bp-dark-gray-1);
+  --sidebar-border: rgba(17, 20, 24, 0.15);
+  --sidebar-ring: rgba(45, 114, 210, 0.6);
+
+  /* Elevation: a hairline "border" shadow plus progressively softer drop shadows */
+  --elevation-0: 0 0 0 1px rgba(17, 20, 24, 0.15);
+  --elevation-1: 0 0 0 1px rgba(17, 20, 24, 0.1), 0 1px 1px rgba(17, 20, 24, 0.2);
+  --elevation-2: 0 0 0 1px rgba(17, 20, 24, 0.1), 0 1px 1px rgba(17, 20, 24, 0.2),
+    0 2px 6px rgba(17, 20, 24, 0.2);
+  --elevation-3: 0 0 0 1px rgba(17, 20, 24, 0.1), 0 2px 4px rgba(17, 20, 24, 0.2),
+    0 8px 24px rgba(17, 20, 24, 0.2);
+  --elevation-4: 0 0 0 1px rgba(17, 20, 24, 0.1), 0 4px 8px rgba(17, 20, 24, 0.2),
+    0 18px 46px 6px rgba(17, 20, 24, 0.2);
+}
+
+.dark {
+  --background: var(--bp-dark-gray-2);
+  --foreground: var(--bp-light-gray-5);
+  --card: var(--bp-dark-gray-3);
+  --card-foreground: var(--bp-light-gray-5);
+  --popover: var(--bp-dark-gray-3);
+  --popover-foreground: var(--bp-light-gray-5);
+
+  --primary-text: var(--bp-blue-5);
+  --success-text: var(--bp-green-5);
+  --warning-text: var(--bp-orange-5);
+  --destructive-text: var(--bp-red-5);
+
+  --secondary: var(--bp-dark-gray-4);
+  --secondary-hover: var(--bp-dark-gray-3);
+  --secondary-foreground: var(--bp-light-gray-5);
+  --muted: var(--bp-dark-gray-3);
+  --muted-foreground: var(--bp-gray-4);
+  --accent: rgba(143, 153, 168, 0.15);
+  --accent-foreground: var(--bp-light-gray-5);
+
+  --border: rgba(255, 255, 255, 0.2);
+  --input: rgba(255, 255, 255, 0.2);
+  --ring: rgba(138, 187, 255, 0.6);
+
+  --table-header: var(--bp-dark-gray-3);
+  --table-grid: rgba(255, 255, 255, 0.15);
+  --table-stripe: rgba(143, 153, 168, 0.08);
+  --table-selection: rgba(76, 144, 240, 0.15);
+  --table-selection-border: var(--bp-blue-4);
+
+  --sidebar: var(--bp-dark-gray-1);
+  --sidebar-foreground: var(--bp-light-gray-5);
+  --sidebar-primary: var(--bp-blue-3);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(143, 153, 168, 0.15);
+  --sidebar-accent-foreground: var(--bp-light-gray-5);
+  --sidebar-border: rgba(255, 255, 255, 0.2);
+  --sidebar-ring: rgba(138, 187, 255, 0.6);
+
+  --elevation-0: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  --elevation-1: 0 0 0 1px rgba(17, 20, 24, 0.4), 0 1px 1px rgba(17, 20, 24, 0.4);
+  --elevation-2: 0 0 0 1px rgba(17, 20, 24, 0.4), 0 1px 1px rgba(17, 20, 24, 0.4),
+    0 2px 6px rgba(17, 20, 24, 0.4);
+  --elevation-3: 0 0 0 1px rgba(17, 20, 24, 0.4), 0 2px 4px rgba(17, 20, 24, 0.4),
+    0 8px 24px rgba(17, 20, 24, 0.4);
+  --elevation-4: 0 0 0 1px rgba(17, 20, 24, 0.4), 0 4px 8px rgba(17, 20, 24, 0.4),
+    0 18px 46px 6px rgba(17, 20, 24, 0.4);
+}
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue",
+    "Inter", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.5);
+
+  /* h-control / size-control / min-h-control etc. */
+  --spacing-control: var(--control-height);
+  --spacing-control-sm: var(--control-height-sm);
+  --spacing-control-lg: var(--control-height-lg);
+
+  /* Tailwind shadow scale mapped onto elevations */
+  --shadow-2xs: var(--elevation-0);
+  --shadow-xs: var(--elevation-0);
+  --shadow-sm: var(--elevation-1);
+  --shadow: var(--elevation-1);
+  --shadow-md: var(--elevation-2);
+  --shadow-lg: var(--elevation-3);
+  --shadow-xl: var(--elevation-4);
+  --shadow-2xl: var(--elevation-4);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-text: var(--primary-text);
+  --color-success: var(--success);
+  --color-success-hover: var(--success-hover);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-text: var(--success-text);
+  --color-warning: var(--warning);
+  --color-warning-hover: var(--warning-hover);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-text: var(--warning-text);
+  --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-text: var(--destructive-text);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-table-header: var(--table-header);
+  --color-table-grid: var(--table-grid);
+  --color-table-stripe: var(--table-stripe);
+  --color-table-selection: var(--table-selection);
+  --color-table-selection-border: var(--table-selection-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  body {
+    @apply bg-background font-sans text-sm leading-[1.28581] text-foreground antialiased;
+  }
+}
