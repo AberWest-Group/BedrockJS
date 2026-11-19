@@ -30,7 +30,7 @@ const badgeVariants = cva(
     },
     compoundVariants: [
       { variant: "default", minimal: false, className: "bg-primary text-primary-foreground [a&]:hover:bg-primary-hover" },
-      { variant: "secondary", minimal: false, className: "bg-gray-600 text-white dark:bg-gray-400 dark:text-gray-950" },
+      { variant: "secondary", minimal: false, className: "bg-[var(--bp-gray-1)] text-white dark:bg-[var(--bp-gray-4)] dark:text-[var(--bp-dark-gray-1)]" },
       { variant: "success", minimal: false, className: "bg-success text-success-foreground [a&]:hover:bg-success-hover" },
       { variant: "warning", minimal: false, className: "bg-warning text-warning-foreground [a&]:hover:bg-warning-hover" },
       { variant: "destructive", minimal: false, className: "bg-destructive text-destructive-foreground [a&]:hover:bg-destructive-hover" },
