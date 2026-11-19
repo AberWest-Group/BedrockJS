@@ -2,8 +2,8 @@
   "name": "@aberwest/bedrock",
   "version": "0.1.0",
   "description": "Aberwest React component library built on shadcn/ui, Radix UI and Tailwind CSS.",
-  "license": "MIT",
-  "author": "Aberwest",
+  "license": "Apache-2.0",
+  "author": "AberWest Group LTD",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -21,7 +21,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ],
   "sideEffects": [
     "**/*.css"
